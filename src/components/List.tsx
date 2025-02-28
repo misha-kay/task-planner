@@ -2,7 +2,7 @@ import Task from './Task';
 
 type ListProps = {
     tasks: string[];
-    deleteTask: (index: number) => void;
+    deleteTask: (task: string) => void;
     reorderTasks: (dragIndex: number, hoverIndex: number) => void;
 }
 

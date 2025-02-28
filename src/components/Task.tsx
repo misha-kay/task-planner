@@ -4,7 +4,7 @@ import { useDrag, useDrop } from 'react-dnd';
 type TaskProps = {
   task: string;
   index: number;
-  deleteTask: (index: number) => void;
+  deleteTask: (task: string) => void;
   reorderTasks: (dragIndex: number, hoverIndex: number) => void;
 };
 
@@ -38,7 +38,7 @@ const Task = ({ task, deleteTask, index, reorderTasks}: TaskProps) => {
                 <input type="checkbox" className="flex justify-center items-center w-5 h-5" />
                 <p className="pl-4">{task}</p>
             </div>
-            <button onClick={() => deleteTask(index)} className="border-0 rounded-lg bg-rose-700  hover:bg-rose-500 p-2 flex justify-center items-center hover:cursor-pointer"><span className="material-symbols-outlined">delete</span></button>
+            <button onClick={() => deleteTask(task)} className="border-0 rounded-lg bg-rose-700  hover:bg-rose-500 p-2 flex justify-center items-center hover:cursor-pointer"><span className="material-symbols-outlined">delete</span></button>
         </div>
       )
 };
