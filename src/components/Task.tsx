@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
+import { TaskType } from "../hooks/useTasks";
 
 type TaskProps = {
-  task: string;
+  task: TaskType;
   index: number;
   deleteTask: (task: string) => void;
   reorderTasks: (dragIndex: number, hoverIndex: number) => void;
@@ -21,7 +22,7 @@ const Task = ({ task, deleteTask, index, reorderTasks }: TaskProps) => {
 
   const [, drop] = useDrop({
     accept: "TASK",
-    hover: (draggedItem: { index: number }) => {
+    drop: (draggedItem: { index: number }) => {
       if (draggedItem.index !== index) {
         reorderTasks(draggedItem.index, index);
         draggedItem.index = index;
@@ -46,12 +47,15 @@ const Task = ({ task, deleteTask, index, reorderTasks }: TaskProps) => {
         </p>
         <input
           type="checkbox"
-          className="flex justify-center items-center w-5 h-5 accent-green-400 dark:accent-green-400 text-white"
+          id="task"
+          name="task"
+          value="task-complete"
+          className="flex justify-center items-center w-5 h-5 appearance-none border border-stone-300 dark:border-stone-300 rounded bg-stone-200 dark:bg-stone-700 checked:bg-green-400 checked:border-green-500 dark:checked:bg-green-400 checked:after:content-['✓'] checked:after:text-white checked:after:text-sm checked:after:font-bold checked:after:flex checked:after:items-center checked:after:justify-center checked:after:h-full"
         />
-        <p className="pl-4">{task}</p>
+        <p className="pl-4">{task.content}</p>
       </div>
       <button
-        onClick={() => deleteTask(task)}
+        onClick={() => deleteTask(task.id)}
         className="border-0 rounded-lg bg-red-500 hover:bg-red-700 dark:bg-rose-700 dark:hover:bg-rose-500 text-white p-2 flex justify-center items-center hover:cursor-pointer"
       >
         <span className="material-symbols-outlined">delete</span>

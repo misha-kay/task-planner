@@ -2,7 +2,7 @@ import { useDarkMode } from "../hooks/useDarkMode";
 
 const DarkLightToggle = () => {
   const [theme, switchTheme] = useDarkMode();
-  console.log(theme);
+
   return (
     <label className="inline-flex items-center cursor-pointer text-stone-800 dark:text-stone-100">
       <span className="me-3 text-sm">Light / Dark Mode</span>

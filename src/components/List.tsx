@@ -1,7 +1,8 @@
+import { TaskType } from "../hooks/useTasks";
 import Task from "./Task";
 
 type ListProps = {
-  tasks: string[];
+  tasks: TaskType[];
   deleteTask: (task: string) => void;
   reorderTasks: (dragIndex: number, hoverIndex: number) => void;
 };
@@ -12,11 +13,11 @@ const List = ({ tasks, deleteTask, reorderTasks }: ListProps) => {
       <h3 className="pb-4 text-lg text-center">
         Okay! Here are your plans for today...
       </h3>
-      {tasks.map((task, index) => (
+      {tasks.map((task, i) => (
         <Task
-          key={index}
+          key={task.id}
           task={task}
-          index={index}
+          index={i}
           deleteTask={deleteTask}
           reorderTasks={reorderTasks}
         />
